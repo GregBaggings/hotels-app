@@ -21,9 +21,15 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.searchButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+              //  EditText textViewDestination = (EditText) findViewById(R.id.hotelNameTxtView);
+              //  String hotelName = String.valueOf(textViewDestination.getText().toString());
+              //  new MainActivity.HttpRequest(hotelName).execute();
+
+                //TEST
+                Intent intent = new Intent(getApplicationContext(),Test.class);
                 EditText textViewDestination = (EditText) findViewById(R.id.hotelNameTxtView);
-                String hotelName = String.valueOf(textViewDestination.getText().toString());
-                new MainActivity.HttpRequest(hotelName).execute();
+                intent.putExtra("destination", String.valueOf(textViewDestination.getText().toString()));
+                startActivity(intent);
             }
         });
     }
@@ -38,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Hotel doInBackground(Void... voids) {
-            HotelsRequest hotelsRequest = new HotelsRequest();
-            return hotelsRequest.getHotel(hotelName);
+            HotelRequests hotelRequests = new HotelRequests();
+            return hotelRequests.getHotel(hotelName);
         }
 
         @Override
@@ -51,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 hotelNameView.setText(String.valueOf(hotel.getHotelName()));
                 hotelCityView.setText(String.valueOf(hotel.getCity()));
                 hotelAddressView.setText(String.valueOf(hotel.getAddress()));
-                Intent in = new Intent(getApplicationContext(),ResultListerActivity.class);
-                startActivity(in);
+                Intent intent = new Intent(getApplicationContext(),Test.class);
+                EditText textViewDestination = (EditText) findViewById(R.id.hotelNameTxtView);
+                intent.putExtra("destination", String.valueOf(textViewDestination.getText().toString()));
+                startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "No result for that search.", Toast.LENGTH_SHORT).show();
             }
