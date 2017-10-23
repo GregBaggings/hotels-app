@@ -1,7 +1,4 @@
-package io.git.thsesis.hotelapp;
-
-
-import java.io.Serializable;
+package io.git.thsesis.hotelapp.pojos;
 
 /**
  * Created by Gergely_Agnecz on 7/27/2017.
