@@ -47,4 +47,36 @@
         android:layout_alignBottom="@+id/txtAddress"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/txtAddress" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtCity"
+        android:layout_below="@+id/txtCity"
+        android:layout_marginTop="23dp"
+        android:text="Room Details:" />
+
+    <TextView
+        android:id="@+id/textRoomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="15dp" />
+
+    <ListView
+        android:id="@+id/listRooms"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignTop="@+id/textRoomName"
+        android:layout_toEndOf="@+id/textRoomName" />
+
+    <ListView
+        android:id="@+id/listPrices"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_alignTop="@+id/listRooms"
+        android:layout_toEndOf="@+id/listRooms" />
+
 </RelativeLayout>
