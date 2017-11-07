@@ -43,7 +43,7 @@ public class HotelDetailsActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             roomNameAdapter = (ArrayAdapter) roomNameList.getAdapter();
-            roomPricesAdapter = (ArrayAdapter) roomPriceList.getAdapter() ;
+            roomPricesAdapter = (ArrayAdapter) roomPriceList.getAdapter();
         }
 
         @Override
@@ -66,7 +66,7 @@ public class HotelDetailsActivity extends AppCompatActivity {
 
                 for (int i = 0; i < hotelDetails.getRoom().size(); i++) {
                     String roomName = hotelDetails.getRoom().get(i).getRoomname();
-                    roomNameAdapter.add(roomName);
+                    roomNameAdapter.add((i+1) + ". room: " + roomName);
                 }
 
                 for (int i = 0; i < hotelDetails.getRoom().size(); i++) {

@@ -40,4 +40,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:id="@+id/getLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/hotelNameTxtView"
+        android:layout_below="@+id/hotelNameTxtView"
+        android:layout_marginTop="15dp"
+        android:text="Get Current City" />
+
 </RelativeLayout >
