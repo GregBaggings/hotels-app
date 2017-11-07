@@ -2,6 +2,8 @@ package io.git.thsesis.hotelapp;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,7 @@ public class HotelRequests {
     String searchServiceURL = "http://10.0.2.2:2222/v2/search";
     String roomsServiceURL = "http://10.0.2.2:2224/v1/hotels/hotel/{hotelId}/rooms";
     String pricesServiceURL = "http://10.0.2.2:2223/v1/hotels/prices/price";
+    String locationServiceURL = "http://ip-api.com/json";
     RestTemplate restTemplate = new RestTemplate();
 
     public FullDetails getDetails(String hotelName) {
@@ -34,7 +37,7 @@ public class HotelRequests {
             Hotel hotelDetails = restTemplate.getForObject(hotelServiceURL + "?name=" + hotelName, Hotel.class);
             ResponseEntity<List<Room>> roomResponse = restTemplate.exchange(roomsServiceURL.replace("{hotelId}", Integer.toString(hotelDetails.getId())), HttpMethod.GET, null, new ParameterizedTypeReference<List<Room>>() {
             });
-            ResponseEntity<List<Price>> priceResponse = restTemplate.exchange(pricesServiceURL + "?id=" + Integer.toString(hotelDetails.getId()),HttpMethod.GET, null, new ParameterizedTypeReference<List<Price>>() {
+            ResponseEntity<List<Price>> priceResponse = restTemplate.exchange(pricesServiceURL + "?id=" + Integer.toString(hotelDetails.getId()), HttpMethod.GET, null, new ParameterizedTypeReference<List<Price>>() {
             });
 
             List<Room> rooms = roomResponse.getBody();
@@ -59,6 +62,23 @@ public class HotelRequests {
             return response;
         } catch (HttpClientErrorException e) {
             Log.e("Network Error ", e.getLocalizedMessage(), e);
+            return null;
+        }
+    }
+
+    public String getCurrentCity() {
+        String city = "";
+        try {
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+            String response = restTemplate.getForObject(locationServiceURL, String.class);
+            JSONObject json = new JSONObject(response);
+            city = json.getString("city");
+            return city;
+        } catch (HttpClientErrorException e) {
+            Log.e("Network Error ", e.getLocalizedMessage(), e);
+            return null;
+        } catch (JSONException e) {
+            Log.e("JSON Error ", e.getLocalizedMessage(), e);
             return null;
         }
     }
