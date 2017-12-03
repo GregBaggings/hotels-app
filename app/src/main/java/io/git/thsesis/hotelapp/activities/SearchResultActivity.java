@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,17 +62,24 @@ public class SearchResultActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            String hotelName = "";
-            try {
-                JSONObject obj = new JSONObject(result);
-                JSONObject hotelDetails = obj.getJSONObject("hotelDetails");
-                for (int i = 0; i < hotelDetails.length(); i++) {
-                    JSONObject hotel = hotelDetails.getJSONObject("hotel" + i);
-                    hotelName = hotel.getString("hotelName");
-                    adapter.add(hotelName);
+            if (result == null) {
+                Toast.makeText(getBaseContext(), "No hotel found for query. You are moved back to the main screen.",
+                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            } else {
+                String hotelName = "";
+                try {
+                    JSONObject obj = new JSONObject(result);
+                    JSONObject hotelDetails = obj.getJSONObject("hotelDetails");
+                    for (int i = 0; i < hotelDetails.length(); i++) {
+                        JSONObject hotel = hotelDetails.getJSONObject("hotel" + i);
+                        hotelName = hotel.getString("hotelName");
+                        adapter.add(hotelName);
+                    }
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
                 }
-            } catch (JSONException e1) {
-                e1.printStackTrace();
             }
         }
     }
