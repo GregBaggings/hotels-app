@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
         Button getLocationButton = (Button) findViewById(R.id.getLocationButton);
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new MainActivity.HttpRequest().execute();
-                Toast.makeText(getBaseContext(), "Getting your current location, please wait.",
-                        Toast.LENGTH_LONG).show();
+                new MainActivity.GetLocationRequest().execute();
+                Toast.makeText(getBaseContext(), "Getting your current location, please wait.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    class HttpRequest extends AsyncTask<Void, Void, String> {
+    private class GetLocationRequest extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {

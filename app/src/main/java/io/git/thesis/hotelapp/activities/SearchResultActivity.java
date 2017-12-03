@@ -37,15 +37,16 @@ public class SearchResultActivity extends AppCompatActivity {
         });
 
         String destination = getIntent().getStringExtra("destination");
-        new HttpRequest(destination).execute();
+        new GetResults(destination).execute();
+        Toast.makeText(getBaseContext(), "Getting the result for your query, please wait.", Toast.LENGTH_SHORT).show();
     }
 
-    class HttpRequest extends AsyncTask<Void, Void, String> {
+    private class GetResults extends AsyncTask<Void, Void, String> {
 
         ArrayAdapter<String> adapter;
         private String destination;
 
-        public HttpRequest(String destination) {
+        public GetResults(String destination) {
             this.destination = destination;
         }
 
@@ -63,8 +64,7 @@ public class SearchResultActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result == null) {
-                Toast.makeText(getBaseContext(), "No hotel found for query. You are moved back to the main screen.",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "No hotel found for query. You are moved back to the main screen.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             } else {
@@ -77,8 +77,8 @@ public class SearchResultActivity extends AppCompatActivity {
                         hotelName = hotel.getString("hotelName");
                         adapter.add(hotelName);
                     }
-                } catch (JSONException e1) {
-                    e1.printStackTrace();
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
