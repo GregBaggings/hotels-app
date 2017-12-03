@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.pojos;
+package io.git.thesis.hotelapp.pojos;
 
 /**
  * Created by Gergely_Agnecz on 7/27/2017.

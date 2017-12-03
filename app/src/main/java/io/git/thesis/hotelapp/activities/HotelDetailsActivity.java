@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.activities;
+package io.git.thesis.hotelapp.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import io.git.thsesis.hotelapp.HotelRequests;
-import io.git.thsesis.hotelapp.R;
-import io.git.thsesis.hotelapp.pojos.FullDetails;
+import io.git.thesis.hotelapp.HotelRequests;
+import io.git.thesis.hotelapp.R;
+import io.git.thesis.hotelapp.pojos.FullDetails;
 
 public class HotelDetailsActivity extends AppCompatActivity {
     ListView roomNameList;
@@ -26,17 +27,18 @@ public class HotelDetailsActivity extends AppCompatActivity {
         roomPriceList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_gallery_item));
 
         String hotelName = getIntent().getStringExtra("hotelName");
-        new HttpRequest(hotelName).execute();
+        new LoadDetails(hotelName).execute();
+        Toast.makeText(getBaseContext(), "Loading details...", Toast.LENGTH_SHORT).show();
 
     }
 
-    private class HttpRequest extends AsyncTask<Void, Void, FullDetails> {
+    private class LoadDetails extends AsyncTask<Void, Void, FullDetails> {
 
         ArrayAdapter<String> roomNameAdapter;
         ArrayAdapter<String> roomPricesAdapter;
         private String hotelName;
 
-        public HttpRequest(String hotelName) {
+        public LoadDetails(String hotelName) {
             this.hotelName = hotelName;
         }
 
@@ -66,10 +68,10 @@ public class HotelDetailsActivity extends AppCompatActivity {
 
                 for (int i = 0; i < hotelDetails.getRoom().size(); i++) {
                     String roomName = hotelDetails.getRoom().get(i).getRoomname();
-                    roomNameAdapter.add((i+1) + ". room: " + roomName);
+                    roomNameAdapter.add((i + 1) + ". room: " + roomName);
                 }
 
-                for (int i = 0; i < hotelDetails.getRoom().size(); i++) {
+                for (int i = 0; i < hotelDetails.getPrice().size(); i++) {
                     int price = hotelDetails.getPrice().get(i).getPrice();
                     roomPricesAdapter.add(Integer.toString(price) + "$");
                 }

@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.activities;
+package io.git.thesis.hotelapp.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import io.git.thsesis.hotelapp.HotelRequests;
-import io.git.thsesis.hotelapp.R;
+import io.git.thesis.hotelapp.HotelRequests;
+import io.git.thesis.hotelapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
         Button getLocationButton = (Button) findViewById(R.id.getLocationButton);
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new MainActivity.HttpRequest().execute();
-                Toast.makeText(getBaseContext(), "Getting your current location, please wait.",
-                        Toast.LENGTH_LONG).show();
+                new MainActivity.GetLocationRequest().execute();
+                Toast.makeText(getBaseContext(), "Getting your current location, please wait.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -33,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchResultActivity.class);
-                EditText textViewDestination = (EditText) findViewById(R.id.hotelNameTxtView);
+                EditText textViewDestination = (EditText) findViewById(R.id.destinationTxtView);
                 intent.putExtra("destination", String.valueOf(textViewDestination.getText().toString()));
                 startActivity(intent);
             }
         });
     }
 
-    class HttpRequest extends AsyncTask<Void, Void, String> {
+    private class GetLocationRequest extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String city) {
-            EditText textViewDestination = (EditText) findViewById(R.id.hotelNameTxtView);
+            EditText textViewDestination = (EditText) findViewById(R.id.destinationTxtView);
             textViewDestination.setText(city);
         }
     }

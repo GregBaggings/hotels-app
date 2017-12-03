@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.activities;
+package io.git.thesis.hotelapp.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,12 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import io.git.thsesis.hotelapp.HotelRequests;
-import io.git.thsesis.hotelapp.R;
+import io.git.thesis.hotelapp.HotelRequests;
+import io.git.thesis.hotelapp.R;
 
 public class SearchResultActivity extends AppCompatActivity {
     ListView hotelList;
@@ -36,15 +37,16 @@ public class SearchResultActivity extends AppCompatActivity {
         });
 
         String destination = getIntent().getStringExtra("destination");
-        new HttpRequest(destination).execute();
+        new GetResults(destination).execute();
+        Toast.makeText(getBaseContext(), "Getting the result for your query, please wait.", Toast.LENGTH_SHORT).show();
     }
 
-    class HttpRequest extends AsyncTask<Void, Void, String> {
+    private class GetResults extends AsyncTask<Void, Void, String> {
 
         ArrayAdapter<String> adapter;
         private String destination;
 
-        public HttpRequest(String destination) {
+        public GetResults(String destination) {
             this.destination = destination;
         }
 
@@ -61,17 +63,23 @@ public class SearchResultActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            String hotelName = "";
-            try {
-                JSONObject obj = new JSONObject(result);
-                JSONObject hotelDetails = obj.getJSONObject("hotelDetails");
-                for (int i = 0; i < hotelDetails.length(); i++) {
-                    JSONObject hotel = hotelDetails.getJSONObject("hotel" + i);
-                    hotelName = hotel.getString("hotelName");
-                    adapter.add(hotelName);
+            if (result == null) {
+                Toast.makeText(getBaseContext(), "No hotel found for query. You are moved back to the main screen.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            } else {
+                String hotelName = "";
+                try {
+                    JSONObject obj = new JSONObject(result);
+                    JSONObject hotelDetails = obj.getJSONObject("hotelDetails");
+                    for (int i = 0; i < hotelDetails.length(); i++) {
+                        JSONObject hotel = hotelDetails.getJSONObject("hotel" + i);
+                        hotelName = hotel.getString("hotelName");
+                        adapter.add(hotelName);
+                    }
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
                 }
-            } catch (JSONException e1) {
-                e1.printStackTrace();
             }
         }
     }
