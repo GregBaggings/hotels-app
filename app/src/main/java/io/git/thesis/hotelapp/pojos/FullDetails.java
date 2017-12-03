@@ -34,4 +34,13 @@ public class FullDetails {
     public void setRoom(List<Room> room) {
         this.room = room;
     }
+
+    @Override
+    public String toString() {
+        return "FullDetails{" +
+                "hotel=" + hotel +
+                ", price=" + price +
+                ", room=" + room +
+                '}';
+    }
 }

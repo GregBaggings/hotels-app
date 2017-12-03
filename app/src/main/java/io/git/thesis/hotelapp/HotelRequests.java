@@ -25,7 +25,7 @@ import io.git.thesis.hotelapp.pojos.Room;
 public class HotelRequests {
 
     String hotelServiceURL = "http://10.0.2.2:2221/v1/hotels/hotel";
-    String searchServiceURL = "http://10.0.2.2:2222/v2/search";
+    String searchServiceURL = "http://10.0.2.2:2222/v1/search";
     String roomsServiceURL = "http://10.0.2.2:2224/v1/hotels/hotel/{hotelId}/rooms";
     String pricesServiceURL = "http://10.0.2.2:2223/v1/hotels/prices/price";
     String locationServiceURL = "http://ip-api.com/json";
@@ -47,6 +47,7 @@ public class HotelRequests {
             details.setHotel(hotelDetails);
             details.setPrice(prices);
             details.setRoom(rooms);
+            Log.i("DETAILS", "Details are " + details.toString());
             return details;
         } catch (HttpClientErrorException e) {
             Log.e("Network Error ", e.getLocalizedMessage(), e);

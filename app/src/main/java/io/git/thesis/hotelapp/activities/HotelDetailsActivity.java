@@ -71,7 +71,7 @@ public class HotelDetailsActivity extends AppCompatActivity {
                     roomNameAdapter.add((i + 1) + ". room: " + roomName);
                 }
 
-                for (int i = 0; i < hotelDetails.getRoom().size(); i++) {
+                for (int i = 0; i < hotelDetails.getPrice().size(); i++) {
                     int price = hotelDetails.getPrice().get(i).getPrice();
                     roomPricesAdapter.add(Integer.toString(price) + "$");
                 }
