@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.activities;
+package io.git.thesis.hotelapp.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import io.git.thsesis.hotelapp.HotelRequests;
-import io.git.thsesis.hotelapp.R;
-import io.git.thsesis.hotelapp.pojos.FullDetails;
+import io.git.thesis.hotelapp.HotelRequests;
+import io.git.thesis.hotelapp.R;
+import io.git.thesis.hotelapp.pojos.FullDetails;
 
 public class HotelDetailsActivity extends AppCompatActivity {
     ListView roomNameList;

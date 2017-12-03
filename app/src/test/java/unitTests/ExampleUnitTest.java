@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp;
+package unitTests;
 
 import org.junit.Test;
 

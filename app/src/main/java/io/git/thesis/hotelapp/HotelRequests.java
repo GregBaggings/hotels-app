@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp;
+package io.git.thesis.hotelapp;
 
 import android.util.Log;
 
@@ -13,10 +13,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import io.git.thsesis.hotelapp.pojos.FullDetails;
-import io.git.thsesis.hotelapp.pojos.Hotel;
-import io.git.thsesis.hotelapp.pojos.Price;
-import io.git.thsesis.hotelapp.pojos.Room;
+import io.git.thesis.hotelapp.pojos.FullDetails;
+import io.git.thesis.hotelapp.pojos.Hotel;
+import io.git.thesis.hotelapp.pojos.Price;
+import io.git.thesis.hotelapp.pojos.Room;
 
 /**
  * Created by Geri on 2017.09.28..

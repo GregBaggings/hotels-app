@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.pojos;
+package io.git.thesis.hotelapp.pojos;
 
 import java.util.List;
 

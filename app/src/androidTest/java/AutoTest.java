@@ -1,4 +1,3 @@
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -6,12 +5,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import io.git.thsesis.hotelapp.R;
-import io.git.thsesis.hotelapp.activities.MainActivity;
+import io.git.thesis.hotelapp.R;
+import io.git.thesis.hotelapp.activities.MainActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Created by Geri on 2017.11.12..
@@ -26,6 +26,6 @@ public class AutoTest {
 
     @Test
     public void checkDestinationFieldVisibilityTest(){
-        onView(ViewMatchers.withId(R.id.hotelNameTxtView)).check(matches(isDisplayed()));
+        onView(withId(R.id.destinationTxtView)).check(matches(isDisplayed()));
     }
 }

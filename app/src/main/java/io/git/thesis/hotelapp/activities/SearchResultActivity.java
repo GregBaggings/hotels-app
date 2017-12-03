@@ -1,4 +1,4 @@
-package io.git.thsesis.hotelapp.activities;
+package io.git.thesis.hotelapp.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,8 +14,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import io.git.thsesis.hotelapp.HotelRequests;
-import io.git.thsesis.hotelapp.R;
+import io.git.thesis.hotelapp.HotelRequests;
+import io.git.thesis.hotelapp.R;
 
 public class SearchResultActivity extends AppCompatActivity {
     ListView hotelList;

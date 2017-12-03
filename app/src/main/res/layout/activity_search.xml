@@ -15,11 +15,11 @@
         tools:layout_editor_absoluteX="128dp"
         tools:layout_editor_absoluteY="113dp"
         tools:text="Search"
-        android:layout_alignBottom="@+id/hotelNameTxtView"
+        android:layout_alignBottom="@+id/destinationTxtView"
         android:layout_toEndOf="@+id/textWelcome" />
 
     <EditText
-        android:id="@+id/hotelNameTxtView"
+        android:id="@+id/destinationTxtView"
         android:layout_width="149dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -44,8 +44,8 @@
         android:id="@+id/getLocationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/hotelNameTxtView"
-        android:layout_below="@+id/hotelNameTxtView"
+        android:layout_alignStart="@+id/destinationTxtView"
+        android:layout_below="@+id/destinationTxtView"
         android:layout_marginTop="15dp"
         android:text="Get Current City" />
 
